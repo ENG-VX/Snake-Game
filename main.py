@@ -1,6 +1,7 @@
 from turtle import Turtle, Screen
 from snake import Snake
 from food import Food
+from score import Score
 import time
 
 window = Screen()
@@ -9,41 +10,20 @@ window.bgcolor("black")
 window.title("Snake Game 🐍")
 window.tracer(0)
 
+score = Score()
 
 def loss():
     global game_on
     if sam.check_if_snake_body() or sam.check_if_wall():
-        writer = Turtle()
-        writer.hideturtle()
-        writer.color("white")
-        window.bgcolor("red")
-        writer.write("You lost🤭", font=("boulder", 26, "normal"), align="center")
-        time.sleep(2)
+        score.end_massage()
         game_on = False
         window.bgcolor("black")
-        writer.clear()
         sam.delete()
         food.delete()
 
-high_score = 0
-score = 0
-pen = Turtle()
-pen.color("white")
-pen.penup()
-pen.goto(0, 300)
-pen.hideturtle()
-pen.write(f"Score: {score}  High score: {high_score}", font=("boulder", 26, "normal"), align="center")
-
-def score_update():
-    global score, high_score
-    score += 1
-    if score > high_score:
-        high_score = score
-    pen.clear()
-    pen.write(f"Score: {score}  High score: {high_score}", font=("boulder", 26, "normal"), align="center")
 
 def start_menu():
-    if not high_score:
+    if not score.highScore:
         user_menu_choice = window.textinput("Please choose an action:", "1- Start new game\nAny other key to EXIT")
     else:
         user_menu_choice = window.textinput("Please choose an action:", "1- Start new game\n2- Play another round\nAny other key to EXIT")
@@ -61,7 +41,7 @@ def sub_game():
     while game_on:
         if sam.head.distance(food) < 20:
             food.aper()
-            score_update()
+            score.update_score()
             sam.grow()
         window.update()
         time.sleep(0.1)
@@ -70,10 +50,9 @@ def sub_game():
         
 
 def reset_game():
-    global score
-    score = 0
-    pen.clear()
-    pen.write(f"Score: {score}  High score: {high_score}", font=("boulder", 26, "normal"), align="center")
+    score.score = 0
+    score.clear()
+    score.write_score()
     global sam,food
     sam = Snake()
     food = Food()
