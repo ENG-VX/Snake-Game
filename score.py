@@ -13,6 +13,7 @@ class Score(Turtle):
         
 
     def write_score(self):
+        self.goto(0,300)
         self.write(f"Score: {self.score}  High score: {self.highScore}", font=("boulder", 26, "normal"), align="center")
 
     def update_score(self):
@@ -22,12 +23,26 @@ class Score(Turtle):
             self.highScore = self.score
         self.write_score()
         
-    def end_massage(self):
+    def end_message(self):
+           
+        # Change screen color to red
         window = Screen()
         window.bgcolor("red")
-        self.goto(0,0)
+        
+        # Clear the screen and show the message
+        self.clear()
+        self.goto(0, 100)
         self.write("You lost🤭", font=("Arial", 26, "normal"), align="center")
+        
+        # Update the screen to reflect the changes
+        window.update()
+        
+        # Wait for 2 seconds before proceeding (this will allow the message to stay visible)
         time.sleep(2)
+
+
+
+
         
 
     

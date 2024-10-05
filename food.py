@@ -8,6 +8,7 @@ class Food(Turtle):
         self.shape("circle")
         self.color("green")
         self.penup()
+        self.speed("fastest")
         x = random.randint(-360,360)
         y = random.randint(-310,310)
         self.goto(x,y)

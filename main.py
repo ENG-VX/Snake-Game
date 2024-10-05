@@ -15,7 +15,7 @@ score = Score()
 def loss():
     global game_on
     if sam.check_if_snake_body() or sam.check_if_wall():
-        score.end_massage()
+        score.end_message()
         game_on = False
         window.bgcolor("black")
         sam.delete()
@@ -62,6 +62,7 @@ def game():
     while True:
         user_menu_choice = start_menu()
         if user_menu_choice == "1":
+            score.highScore = 0
             reset_game()
             sub_game()
         elif user_menu_choice == "2":
