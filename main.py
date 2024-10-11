@@ -66,6 +66,8 @@ def game():
             reset_game()
             sub_game()
         elif user_menu_choice == "2":
+            if score.highScore==0:
+                break
             reset_game()
             sub_game()
         else:

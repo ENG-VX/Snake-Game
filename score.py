@@ -32,7 +32,7 @@ class Score(Turtle):
         # Clear the screen and show the message
         self.clear()
         self.goto(0, 100)
-        self.write("You lost🤭", font=("Arial", 26, "normal"), align="center")
+        self.write(f"              You lost🤭\nYour Score: {self.score}, High Score: {self.highScore}", font=("Arial", 26, "normal"), align="center")
         
         # Update the screen to reflect the changes
         window.update()

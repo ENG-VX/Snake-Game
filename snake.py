@@ -22,9 +22,13 @@ class Snake:
         self.snake_parts[-1].color("red")
 
     def check_if_snake_body(self):
-            headX,headY = self.head.pos()
-            for turtlePart in self.snake_parts[:-1]:
-                if abs(headX - turtlePart.xcor()) < 15 and abs(headY - turtlePart.ycor()) < 15:
+            # headX,headY = self.head.pos()
+            # for turtlePart in self.snake_parts[:-1]:
+            #     if abs(headX - turtlePart.xcor()) < 15 and abs(headY - turtlePart.ycor()) < 15:
+            #         return True
+            # return False
+            for snakePart in self.snake_parts[:-1]:
+                if snakePart.distance(self.head) <15:
                     return True
             return False
 
