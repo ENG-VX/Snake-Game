@@ -23,11 +23,7 @@ def loss():
 
 
 def start_menu():
-    if not score.highScore:
-        user_menu_choice = window.textinput("Please choose an action:", "1- Start new game\nAny other key to EXIT")
-    else:
-        user_menu_choice = window.textinput("Please choose an action:", "1- Start new game\n2- Play another round\nAny other key to EXIT")
-    return user_menu_choice
+    return window.textinput("Please choose an action:", "1- Play another round\n2- Reset the game and play new round\nAny other key to EXIT")
 
 def sub_game():
     global game_on
@@ -62,12 +58,11 @@ def game():
     while True:
         user_menu_choice = start_menu()
         if user_menu_choice == "1":
-            score.highScore = 0
             reset_game()
-            sub_game()
+            sub_game()        
         elif user_menu_choice == "2":
-            if score.highScore==0:
-                break
+            open("High Score.txt","w").write("0")
+            score.highScore = 0
             reset_game()
             sub_game()
         else:
